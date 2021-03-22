@@ -17,25 +17,25 @@
     </style>
 </head>
 <body>
-    <form action="" method="post" onsubmit="return check()">
+    <form action="${pageContext.request.contextPath}/register" method="post" onsubmit="return check()">
         <table>
             <tr>
-                <td><input type="text" Placeholder="UserName"></td>
+                <td><input type="text" Placeholder="UserName" name="username"></td>
             </tr>
             <tr>
-                <td><input type="password" Placeholder="password"></td>
+                <td><input type="password" Placeholder="password" name="password"></td>
             </tr>
             <tr>
-                <td><input type="text"  Placeholder="Email"></td>
+                <td><input type="text"  Placeholder="Email" name="email"></td>
             </tr>
             <tr>
                 <td>
-                    Gender:<input type="radio" name="f" class="gender">Male
-                    <input type="radio" name="f" class="gender">Female
+                    Gender:<input type="radio"  class="gender" name="gender">Male
+                    <input type="radio"  class="gender" name="gender">Female
                 </td>
             </tr>
             <tr>
-                <td><input type="text"  Placeholder="Date of Birth (yyyy-mm-dd)"></td>
+                <td><input type="text"  Placeholder="Date of Birth (yyyy-mm-dd)" name="birthdate"></td>
             </tr>
             <tr>
                 <td>

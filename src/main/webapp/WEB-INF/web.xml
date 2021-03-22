@@ -7,8 +7,17 @@
         <servlet-name>myname</servlet-name>
         <servlet-class>com.WangWei.week2.HelloWorldServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>RegisterServlet</servlet-name>
+        <servlet-class>com.WangWei.week3.RegisterServlet</servlet-class>
+    </servlet>
+
     <servlet-mapping>
         <servlet-name>myname</servlet-name>
         <url-pattern>/hello</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegisterServlet</servlet-name>
+        <url-pattern>/register</url-pattern>
     </servlet-mapping>
 </web-app>
