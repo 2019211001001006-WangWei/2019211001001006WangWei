@@ -7,17 +7,54 @@
         <servlet-name>myname</servlet-name>
         <servlet-class>com.WangWei.week2.HelloWorldServlet</servlet-class>
     </servlet>
+    <!--HW3-exercise
     <servlet>
         <servlet-name>RegisterServlet</servlet-name>
         <servlet-class>com.WangWei.week3.RegisterServlet</servlet-class>
     </servlet>
-
+    <servlet-mapping>
+    <servlet-name>RegisterServlet</servlet-name>
+    <url-pattern>/register</url-pattern>
+    </servlet-mapping>
+    -->
+    <!---HW4-exercise1-task1
+    <servlet>
+        <servlet-name>ConfigDemoServlet</servlet-name>
+        <servlet-class>com.WangWei.week4.ConfigDemoServlet</servlet-class>
+        <init-param>
+            <param-name>name</param-name>
+            <param-value>WangWei</param-value>
+        </init-param>
+        <init-param>
+            <param-name>studentId</param-name>
+            <param-value>2019211001001006</param-value>
+        </init-param>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ConfigDemoServlet</servlet-name>
+        <url-pattern>/config</url-pattern>
+    </servlet-mapping>
+    -->
     <servlet-mapping>
         <servlet-name>myname</servlet-name>
         <url-pattern>/hello</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>RegisterServlet</servlet-name>
-        <url-pattern>/register</url-pattern>
-    </servlet-mapping>
+
+
+    <context-param>
+        <param-name>driver</param-name>
+        <param-value>com.microsoft.sqlserver.jdbc.SQLServerDriver</param-value>
+    </context-param>
+    <context-param>
+        <param-name>url</param-name>
+        <param-value>jdbc:sqlserver://127.0.0.1:1433;databaseName=Userdb</param-value>
+    </context-param>
+    <context-param>
+        <param-name>Username</param-name>
+        <param-value>sa</param-value>
+    </context-param>
+    <context-param>
+        <param-name>Password</param-name>
+        <param-value>123456</param-value>
+    </context-param>
 </web-app>
