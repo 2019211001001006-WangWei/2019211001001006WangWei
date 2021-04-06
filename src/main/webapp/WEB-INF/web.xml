@@ -35,6 +35,7 @@
         <url-pattern>/config</url-pattern>
     </servlet-mapping>
     -->
+
     <servlet-mapping>
         <servlet-name>myname</servlet-name>
         <url-pattern>/hello</url-pattern>
