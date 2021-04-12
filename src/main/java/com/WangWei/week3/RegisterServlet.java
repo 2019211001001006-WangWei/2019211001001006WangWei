@@ -12,9 +12,10 @@ import java.util.ArrayList;
 import java.util.List;
 @WebServlet(name="RegisterServlet", value="/register")
 public class RegisterServlet extends HttpServlet {
-    Connection con;
+    Connection con = null;
     @Override
-    public void init(){//link sqlserver
+    public void init() throws ServletException {//link sqlserver
+        super.init();
         String driver = getServletConfig().getServletContext().getInitParameter("driver");
         String url = getServletConfig().getServletContext().getInitParameter("url");
         String username = getServletConfig().getServletContext().getInitParameter("Username");
@@ -27,14 +28,15 @@ public class RegisterServlet extends HttpServlet {
             System.out.println("error");
             e.printStackTrace();
         }
+
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        PrintWriter writer = response.getWriter();
-        writer.println("doGet()...");
+
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        //get  user info
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String email = request.getParameter("email");
@@ -48,6 +50,7 @@ public class RegisterServlet extends HttpServlet {
         writer.println("<br>gender: " + gender);
         writer.println("<br>birthDate: " + birthDate);
         writer.close();*/
+        //insert userTable
         String sql = "insert into Usertable values(?,?,?,?,?)";
         try {
             //insert sqlserver；
@@ -64,38 +67,40 @@ public class RegisterServlet extends HttpServlet {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-        List<User> retList = new ArrayList<User>();//学生集合
-        String sqlSearch = "select * from Usertable";
-        try {
-            PreparedStatement stml = con.prepareStatement(sqlSearch);
-            ResultSet sea = stml.executeQuery();
-            while(sea.next()){//将查询的信息存入学生集合；
-                User s = new User();
-                s.setUsername(sea.getString("username"));
-                s.setPassword(sea.getString("password"));
-                s.setEmail(sea.getString("email"));
-                s.setGender(sea.getString("gender"));
-                s.setBirthDate(sea.getString("birthdate"));
-
-                retList.add(s);
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        PrintWriter writer = response.getWriter();
-        writer.println("<table border = \"1\"> <tr> <td>username</td> <td>password</td> <td>email</td>  " +
-                "<td>gender</td> <td>birthDate</td> </tr>");
-        for(User s: retList){
-            writer.println("<tr>" + "<td>" + s.getUsername() + "</td> ");
-            writer.println("<td>" + s.getPassword() + "</td> ");
-            writer.println("<td>" + s.getEmail() + "</td> ");
-            writer.println("<td>" + s.getGender() + "</td> ");
-            writer.println("<td>" + s.getBirthDate() + "</td> </tr> ");
-        }
-        writer.println("</table> ");
-        writer.close();
+        //send to login.jsp
+        response.sendRedirect("login.jsp");
+        //week4-HW
+//        List<User> retList = new ArrayList<User>();
+//        String sqlSearch = "select * from Usertable";
+//        try {
+//            PreparedStatement stml = con.prepareStatement(sqlSearch);
+//            ResultSet sea = stml.executeQuery();
+//            while(sea.next()){
+//                User s = new User();
+//                s.setUsername(sea.getString("username"));
+//                s.setPassword(sea.getString("password"));
+//                s.setEmail(sea.getString("email"));
+//                s.setGender(sea.getString("gender"));
+//                s.setBirthDate(sea.getString("birthdate"));
+//
+//                retList.add(s);
+//            }
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        PrintWriter writer = response.getWriter();
+//        writer.println("<table border = \"1\"> <tr> <td>username</td> <td>password</td> <td>email</td>  " +
+//                "<td>gender</td> <td>birthDate</td> </tr>");
+//        for(User s: retList){
+//            writer.println("<tr>" + "<td>" + s.getUsername() + "</td> ");
+//            writer.println("<td>" + s.getPassword() + "</td> ");
+//            writer.println("<td>" + s.getEmail() + "</td> ");
+//            writer.println("<td>" + s.getGender() + "</td> ");
+//            writer.println("<td>" + s.getBirthDate() + "</td> </tr> ");
+//        }
+//        writer.println("</table> ");
+//        writer.close();
     }
     public void destroy(){
         super.destroy();

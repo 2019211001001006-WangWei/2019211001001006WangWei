@@ -9,6 +9,12 @@
 <%@include file="header.jsp" %>
 <body>
     <h1>Login</h1>
+    <%
+        if(!(request.getAttribute("message") == null)){
+            out.print("<h3 style=\"color:red;\">" + request.getAttribute("message") + "</h3>");
+        }
+
+    %>
     <form action="${pageContext.request.contextPath}/login" method="post">
         UserName: <input type="text" name="username">
         <br>
