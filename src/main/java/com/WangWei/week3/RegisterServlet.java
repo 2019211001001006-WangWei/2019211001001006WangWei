@@ -16,7 +16,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     public void init() throws ServletException {//link sqlserver
         super.init();
-        String driver = getServletConfig().getServletContext().getInitParameter("driver");
+/*        String driver = getServletConfig().getServletContext().getInitParameter("driver");
         String url = getServletConfig().getServletContext().getInitParameter("url");
         String username = getServletConfig().getServletContext().getInitParameter("Username");
         String password = getServletConfig().getServletContext().getInitParameter("Password");
@@ -27,8 +27,10 @@ public class RegisterServlet extends HttpServlet {
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println("error");
             e.printStackTrace();
-        }
+        }*/
 
+        //week6
+        con = (Connection) getServletContext().getAttribute("con");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

@@ -58,4 +58,8 @@
         <param-name>Password</param-name>
         <param-value>123456</param-value>
     </context-param>
+    <welcome-file-list>
+        <welcome-file>home</welcome-file>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
 </web-app>

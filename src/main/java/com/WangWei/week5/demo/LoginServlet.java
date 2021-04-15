@@ -1,12 +1,19 @@
 package com.WangWei.week5.demo;
 
+import com.WangWei.dao.UserDao;
+import com.WangWei.model.User;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
-
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Date;
 @WebServlet(name = "LoginServlet", value = "/login")
 public class LoginServlet extends HttpServlet {
     Connection con = null;
@@ -28,6 +35,40 @@ public class LoginServlet extends HttpServlet {
         con = (Connection) getServletContext().getAttribute("con");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+/*     UserDao Text
+       List<User> retList = new ArrayList<User>();
+
+        try {
+
+            UserDao userDao = new UserDao();
+            retList = userDao.findAllUser(con);
+
+            retList = userDao.findByBirthdate(con, date);
+            retList = userDao.findByGender(con, "male");
+            retList = userDao.findByEmail(con, "2019211001001006@ecjtu.edu.cn");
+            retList = userDao.findByPassword(con,"1111111111111111");
+            retList = userDao.findByUsername(con,"bb");
+            User user = userDao.findById(con,11);
+            int d = userDao.deleteUser(con,user);
+            User user = new User(8,"baba","123456123","9999@qq.com","male",new Date("1111/11/11"));
+            User s = new User();
+            String dateString = "1231-11-15";
+            Date date= new SimpleDateFormat("yyyy-MM-dd").parse(dateString);
+            s.setUsername("99");
+            s.setPassword("44444444444444444");
+            s.setEmail("1111@qq.com");
+            s.setGender("Female");
+            s.setBirthDate(date);
+            Boolean d = userDao.saveUser(con,s);
+
+            System.out.println(d);
+        } catch (SQLException | ParseException throwables) {
+            throwables.printStackTrace();
+        }
+        for(User u:retList){
+            System.out.println(u);
+        }*/
 
     }
 
@@ -35,6 +76,20 @@ public class LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
+        UserDao userDao = new UserDao();
+        try {
+            User u = userDao.findByUsernamePassword(con,username,password);
+            if(u !=null){
+                request.setAttribute("user",u);
+                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+            }else{
+                request.setAttribute("message", "Username or Password Error!");
+                request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request,response);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+/*
         String sql = "select * from  Usertable where username = ? and password = ?";
         PreparedStatement st = null;
         PrintWriter writer = response.getWriter();
@@ -65,6 +120,7 @@ public class LoginServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+*/
 
     }
 }
