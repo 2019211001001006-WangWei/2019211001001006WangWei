@@ -1,3 +1,4 @@
+<%@ page import="com.WangWei.model.User" %>
 <html>
  <head>
    <title>My Online Shop</title>
@@ -32,11 +33,21 @@
    </td>
    </tr>
    <tr height="25"><td align="right"><font size="18" color="blue">
-   Welcome,<font size="18" color="red"> Guest</font>
+   Welcome,
+       <%
+           User u = (User)session.getAttribute("user");
+           if(u != null){
+               out.print(u.getUsername());
+           }else{
+       %>
+       <font size="18" color="red"> Guest</font>
+       <%}%>
    </font></td> </tr>
   <tr height="20"><td align="right">
-   <br> <a href="#">Logout</a>
-  <br><a href="#">My Cart</a><br/>
+   <%if(session.getAttribute("user")!=null){%>
+      <br> <a href="logout">Logout</a>
+      <%}%>
+      <br><a href="#">My Cart</a><br/>
 <a href="register.jsp">Register Here</a>
   </td></tr>
  </table>

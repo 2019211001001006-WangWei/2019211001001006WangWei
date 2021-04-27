@@ -61,9 +61,8 @@ public class UserDao implements IUserDao{
             p.setString(4, user.getEmail());
             p.setDate(5, new java.sql.Date(user.getBirthDate().getTime()));
             p.setInt(6, user.getId());
-            if(p.executeUpdate() > 0){
-                return 1;
-            }
+
+                return p.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -104,7 +103,6 @@ public class UserDao implements IUserDao{
             st.setString(1,username);
             st.setString(2,password);
             ResultSet sea = st.executeQuery();
-
             if(sea.next()){
                 s = new User();
                 s.setId(sea.getInt("id"));
