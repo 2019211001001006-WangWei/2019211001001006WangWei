@@ -11,7 +11,7 @@ public class SearchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String txt = request.getParameter("txt");
         String select = request.getParameter("search");
-        response.sendRedirect("SearchServlet" );
+
         if(txt == null|| "".equals(txt)){
             response.sendRedirect("index.jsp");
         }else{

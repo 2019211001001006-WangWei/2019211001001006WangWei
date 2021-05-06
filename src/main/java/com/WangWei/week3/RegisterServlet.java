@@ -33,7 +33,7 @@ public class RegisterServlet extends HttpServlet {
         con = (Connection) getServletContext().getAttribute("con");
     }
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        request.getRequestDispatcher("WEB-INF/views/register.jsp").forward(request,response);
     }
 
     @Override
@@ -70,7 +70,7 @@ public class RegisterServlet extends HttpServlet {
             e.printStackTrace();
         }
         //send to login.jsp
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("login");
         //week4-HW
 //        List<User> retList = new ArrayList<User>();
 //        String sqlSearch = "select * from Usertable";
