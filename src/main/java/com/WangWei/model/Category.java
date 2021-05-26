@@ -66,7 +66,7 @@ public class Category {
                 Category c = new Category();
                 c.setCategoryId(rs.getInt("categoryId"));
                 c.setCategoryName(rs.getString("categoryName"));
-                c.setDescription(rs.getString("categoryDescription"));
+                c.setDescription(rs.getString("description"));
                 list.add(c);
             }
 
@@ -77,7 +77,7 @@ public class Category {
     }
     public static String findCategoryById(Connection con, int categoryId){
         String categoryName = null;
-        String queryString = "select categoryName form category where categoryId=?";
+        String queryString = "select categoryName from category where categoryId=?";
         try {
             PreparedStatement st = con.prepareStatement(queryString);
             st.setInt(1,categoryId);
