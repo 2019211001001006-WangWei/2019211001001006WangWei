@@ -20,7 +20,7 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("WEB-INF/views/UpdateUser.jsp").forward(request,response);
+        request.getRequestDispatcher("accountDetails").forward(request,response);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class UpdateUserServlet extends HttpServlet {
             }
             else{
                 request.setAttribute("message","Update failed!");
-                request.getRequestDispatcher("WEB-INF/views/UpdateUser.jsp").forward(request,response);
+                request.getRequestDispatcher("accountDetails").forward(request,response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
