@@ -1,4 +1,4 @@
-<%@ page import="com.dabing.model.User" %>
+<%@ page import="com.WangWei.model.User" %>
 <%@ page import="java.util.List" %>
  
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -9,11 +9,11 @@
 				<div class="col-sm-4 col-sm-offset-1">
 					<div class="login-form"><!--login form-->
 						<h2>Update User Info</h2>
-<% if(!(request.getAttribute("user")==null)){
+<% if(!(session.getAttribute("user")==null)){
     
-   com.dabing.model.User u = (com.dabing.model.User)request.getAttribute("user");
+   com.WangWei.model.User u = (com.WangWei.model.User)session.getAttribute("user");
 %>
-<%if(!(request.getAttribute("message")==null)){
+<%if(!(session.getAttribute("message")==null)){
     out.println("<h3>"+request.getAttribute("message")+"</h3>");
 }%>
 <form method="post" action="updateUser">

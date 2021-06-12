@@ -166,7 +166,7 @@
 
 
 					<span>
-						<label><input name="paymentId" value="1" type="checkbox" varStatus="status"  value="${pType.paymentId}">${pType.paymentType} </label>
+						<label><input name="paymentId"  type="checkbox" varStatus="status"  value="${pType.paymentId}">${pType.paymentType} </label>
 					</span>
 				</c:forEach>
 					<!-- loop_end -->

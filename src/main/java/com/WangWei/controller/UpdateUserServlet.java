@@ -20,7 +20,7 @@ public class UpdateUserServlet extends HttpServlet {
     @Override
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("accountDetails").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/updateUserView.jsp").forward(request,response);
     }
 
     @Override
@@ -41,11 +41,11 @@ public class UpdateUserServlet extends HttpServlet {
             if( userdao.updateUser(con,u) > 0){
                 HttpSession session = request.getSession();
                 session.setAttribute("user",u);
-                request.getRequestDispatcher("WEB-INF/views/userInfo.jsp").forward(request,response);
+                request.getRequestDispatcher("accountDetails").forward(request,response);
             }
             else{
                 request.setAttribute("message","Update failed!");
-                request.getRequestDispatcher("accountDetails").forward(request,response);
+                request.getRequestDispatcher("/WEB-INF/views/updateUserView.jsp").forward(request,response);
             }
         } catch (SQLException throwables) {
             throwables.printStackTrace();
